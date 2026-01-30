@@ -72,3 +72,29 @@ Route::get('/form/grade', function (Request $request) {
 ;
 
 // Sir Danniel's approach
+Route::get('/get-grade', function (Request $request) {
+    $score = $request->score;
+
+    $output = '';
+
+    if ($score < 75) {
+        $output = 'Failed';
+    } else if ($score >= 75 && $score < 80) {
+        $output = 'Passed';
+    } else if ($score >= 80 && $score < 95) {
+        $output = 'Good';
+    } else {
+        $output = 'Excellent';
+    }
+
+    return $output;
+});
+
+Route::get('/get-profile', function (Request $request) {
+    $fullName = $request->fullName;
+    $email    = $request->email;
+    $username = $request->username;
+
+    $output = "Full Name: $fullName<br />Email: $email<br />Username: $username";
+    return $output;
+});
