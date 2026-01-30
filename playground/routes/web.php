@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,6 @@ Route::get('/form', function (Request $request) {
 
     dd($birthDate->diffForHumans());
 });
+
+Route::get('/get-grade', [UserController::class, 'getGrade']);
+Route::get('get-profile', [UserController::class, 'getProfile']);
