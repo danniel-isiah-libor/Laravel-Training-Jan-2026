@@ -49,3 +49,26 @@ Route::get('/form', function (Request $request) {
     dd($birthDate->diffForHumans());
 
 });
+
+// Exercise attempt
+Route::get('/form', function (Request $request) {
+    $fullname = $request->fullname;
+    $email    = $request->email;
+    $username = $request->username;
+    return "Name: $fullname<br />Email: $email<br />Username: $username";
+});
+
+Route::get('/form/grade', function (Request $request) {
+    $grade = $request->grade;
+
+    if ($grade < 75) {
+        return 'Failed!';
+    } elseif ($grade < 81) {
+        return 'Passed';
+    } else {
+        return 'Good!';
+    }
+})
+;
+
+// Sir Danniel's approach
