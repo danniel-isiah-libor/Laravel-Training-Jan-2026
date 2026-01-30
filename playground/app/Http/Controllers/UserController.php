@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,8 +30,20 @@ class UserController extends Controller
         $fullName = $request->fullName;
         $email    = $request->email;
         $username = $request->username;
+        // $render   = $request->render;
+
+        $userClass = User::getData();
+
+        if ((empty($fullName) && empty($email) && empty($username))) {
+            $fullName = $userClass->fullName;
+            $email    = $userClass->email;
+            $username = $userClass->username;
+            $render   = $userClass->render;
+        }
 
         $output = "Full Name: $fullName<br />Email: $email<br />Username: $username";
-        return $output;
+        return view('user-profile', ['fullName' => $fullName, 'email' => $email, 'username' => $username, 'render' => $render]);
     }
+}
+{
 }
