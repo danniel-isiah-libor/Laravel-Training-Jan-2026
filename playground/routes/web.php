@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,4 +36,16 @@ Route::redirect('/from', 'users/settings', 301)->name('redirect.to.settings');
 
 Route::fallback(function () {
     return 'This is a fallback!';
+});
+
+Route::get('/form', function (Request $request) {
+    dd($request->all());
+});
+
+Route::get('/form', function (Request $request) {
+    $name = $request->name;
+
+    $birthDate = $request->date('birthdate');
+    dd($birthDate->diffForHumans());
+
 });
