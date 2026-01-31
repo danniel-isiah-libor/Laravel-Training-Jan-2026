@@ -4,41 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function getGrade(Request $request, ?int $grade = null): void
+    public function getGrade(Request $request)
     {
-        $grade = $request->grade;
+        $score = $request->score;
 
-        if ($grade < 75) {
-            dd('Failed');
-        } elseif ($grade < 81) {
-            dd('Passsed');
-        } elseif ($grade < 96) {
-            dd('Good');
+        $output = '';
+
+        if ($score < 75) {
+            $output = 'Failed';
+        } else if ($score >= 75 && $score < 80) {
+            $output = 'Passed';
+        } else if ($score >= 80 && $score < 95) {
+            $output = 'Good';
         } else {
-            dd('Excellent');
+            $output = 'Excellent';
         }
+
+        return view('get-grade', ['grade' => $output]);
     }
 
-    public function getInfo(Request $request): View
+    public function getProfile(Request $request)
     {
-        $fullName = $request->fullname;
+        $fullName = $request->fullName;
         $email = $request->email;
-        $username = $request->username;
-        if (empty($fullName) && empty($email) && empty($username)) {
-            $user = User::getData();
+        $userName = $request->userName;
+
+        if (empty($fullName) && empty($email) && empty($userName)) {
+            $user = User::getData(); // perform query....
+
             $fullName = $user->fullName;
             $email = $user->email;
-            $username = $user->userName;
+            $userName = $user->userName;
         }
+
+        // $output = "Full Name: $fullName <br> Email: $email <br> Username: $userName";
+
         return view('user-profile', [
             'fullName' => $fullName,
             'email' => $email,
-            'userName' => $username,
-            'render' => '<h1 style="color: red;">Test</h1>',
+            'userName' => $userName,
+            'render' => '<h1 style="color:red">Test</h1>',
         ]);
     }
 }
