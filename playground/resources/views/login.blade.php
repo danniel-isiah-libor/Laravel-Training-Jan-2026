@@ -16,7 +16,7 @@
                 <x-forms.submit-button>Login</x-forms.submit-button>
 
                 <div class="text-center">
-                    <p class="text-sm text-neutral-500">No account yet? <a href="register" class="text-white">Register</a></p>
+                    <p class="text-sm text-neutral-500">No account yet? <a href="{{ route('register.page') }}" class="text-white">Register</a></p>
             </form>
         </div>
     </main>

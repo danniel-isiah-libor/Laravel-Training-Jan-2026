@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -43,15 +44,6 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-        ];
-    }
-
-    public static function getData()
-    {
-        return (object)[
-            'fullName' => "Simon Javier",
-            'email' => "simonjavier812@gmail.com",
-            'userName' => "simon",
         ];
     }
 }
