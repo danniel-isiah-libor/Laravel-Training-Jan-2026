@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-black text-white scroll-smooth" lang="en">
+<html class="min-h-full bg-black text-white scroll-smooth" lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -16,7 +16,7 @@
         <title>{{ $title ?? 'App' }}</title>
     </head>
 
-    <body class="h-full">
+    <body {{ $attributes->merge(['class' => 'min-h-full']) }}>
             {{ $slot }}
     </body>
 

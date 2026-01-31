@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,9 +18,9 @@ class UserController extends Controller
 
         if ($score < 75) {
             $output = 'Failed';
-        } else if ($score >= 75 && $score < 80) {
+        } elseif ($score >= 75 && $score < 80) {
             $output = 'Passed';
-        } else if ($score >= 80 && $score < 95) {
+        } elseif ($score >= 80 && $score < 95) {
             $output = 'Good';
         } else {
             $output = 'Excellent';
@@ -51,25 +53,36 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $validated = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
-            'password' => [
-                'confirmed',
-                Password::min(8)
-                    ->letters()
-                    ->required()
-                    ->numbers()
-                    ->symbols()
-                    ->mixedCase()
-                    ->max(25)
-                    ->uncompromised()
-            ],
-        ]);
+        $validated = $request->validated();
 
-        redirect()->route('register.show');
+        if ($validated) {
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
+            Auth::login($user);
+        }
+
+        return redirect()->route('home');
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('home');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

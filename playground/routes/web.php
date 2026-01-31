@@ -13,7 +13,7 @@ Route::get('/hello', function () {
     return 'Hello, World!';
 });
 
-Route::prefix('users')->name('users.')->group(function () {
+Route::prefix('users')->name('users.')->middleware('auth')->group(function () {
     // /users/profile/edit
     Route::get('profile/edit', function () {
         return 'Profile Edit Page';
@@ -50,5 +50,8 @@ Route::get('get-profile', [UserController::class, 'getProfile']);
 Route::view('/register', 'register')->name('register.page');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
+Route::view('/login', 'login')->name('login');
 
-Route::view('/login', 'login', ['first_name' => 'Simon', 'last_name' => 'Javier'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login.post');
+
+Route::view('/home', 'home')->name('home')->middleware('auth');

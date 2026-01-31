@@ -1,8 +1,8 @@
 <x-layout title="Login Page">
     <main>
         <div class="container mx-auto">
-            <form class="lg:w-[30%] flex flex-col mx-auto p-5 gap-5 mt-5" method="post">
-                @csrf
+            <form class="lg:w-[30%] flex flex-col mx-auto p-5 gap-5 mt-5" method="post" action="{{ route('login.post') }}">
+                {{ csrf_field() }}
 
                 <x-forms.form-header header="Login">
                     Post your thoughts and see what others are saying.
