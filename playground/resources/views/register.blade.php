@@ -12,14 +12,16 @@
         </x-slot:header>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" class="space-y-6">
+            <form action="{{ route('register.store') }}" method="POST" class="space-y-6">
+                @csrf
+
                 <x-form.input-field label="Name" name="name" />
 
                 <x-form.input-field label="Email" name="email" type="email" />
 
-                <x-form.input-field label="Password" type="password" name="password" />
+                <x-form.input-field label="Password" type="text" name="password" />
 
-                <x-form.input-field label="Confirm Password" type="password" name="password_confirmation" />
+                <x-form.input-field label="Confirm Password" type="text" name="password_confirmation" />
 
                 <div>
                     <button type="submit"
