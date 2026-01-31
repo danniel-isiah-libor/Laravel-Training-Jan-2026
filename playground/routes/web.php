@@ -4,9 +4,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+  return view('welcome');
+});
 
 // Route::view('/', 'hello');
 
@@ -47,3 +47,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/profile', [UserController::class, 'getProfile']);
 
 Route::get('/grades', [UserController::class, 'getGrade']);
+
+Route::view('/register', 'register', ['first_name' => 'John', 'last_name' => 'Doe']);
