@@ -1,15 +1,8 @@
 <div>
-    <!-- An unexamined life is not worth living. - Socrates -->
-
-    Full Name: {{ $fullName }}
-    <br />
-
-    Email: {{ $email }}
-    <br />
-
-    Username: {{ $username }}
-    <br />
-
-    {!! $render !!}
+    <x-user-data label="Full Name" :value="$fullName" />
+    <br>
+    <x-user-data label="Email" :value="$email" />
+    <br>
+    <x-user-data label="Username" :value="$username" />
 
 </div>
