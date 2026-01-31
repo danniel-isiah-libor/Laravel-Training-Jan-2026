@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -21,15 +23,18 @@ public function getGrade(Request $request) {
             $result = 'PASSED!';
         } else if ($grade >= 101) {
             $result = 'You have entered a Wrong Number';
+        } else if ($grade == null) {
+            $result = 'There is no Value';
         } else {
             $result = 'FAILED!';
         }
-    return $result;
+    return view('get-grade', ['result' => $result]);
     }
 
 
 
-public function getProfile(Request $request) {
+
+    public function getProfile(Request $request) {
         $name = $request->name;
         $email = $request->email;
         $username = $request->username;
@@ -51,4 +56,11 @@ public function getProfile(Request $request) {
             'username'=> $username,
         ]);
     }
+
+    public function store(UserStoreRequest $request)
+    {
+        $validateForm = $request->validated();
+        dd($validateForm);
+    }
 }
+

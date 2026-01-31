@@ -50,3 +50,12 @@ Route::get('/form', function (Request $request) {
     
     Route::get('/user', [UserController::class, 'getProfile'])->name('profile');
 
+    //register
+    Route::view('/register', 'register');
+    Route::post('register', [UserController::class, 'store'])->name('register.store');
+
+    //login
+    Route::view('/login', 'login');
+
+
+
