@@ -49,5 +49,7 @@ Route::get('/profile', [UserController::class, 'getProfile']);
 Route::get('/grade', [UserController::class, 'getGrade']);
 
 Route::view('/register', 'register')->name('register.page');
-
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+Route::view('/login', 'login')->name('login');
+Route::post('/login', [UserController::class, 'authenticate'])->name('login.authenticate');

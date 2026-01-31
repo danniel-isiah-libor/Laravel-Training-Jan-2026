@@ -15,9 +15,13 @@
                         name="password_confirmation" btn="submit" />
 
                     <button
-                        class="py-2 px-3 font-bold bg-violet-800 hover:bg-violet-700 text-white rounded-lg mt-3 cursor-pointer">Submit
+                        class="py-2 px-3 font-bold bg-violet-800 hover:bg-violet-700 text-white rounded-lg mt-3 cursor-pointer">Register
                     </button>
                 </div>
+                <p class="text-center">
+                    Already have an account? <a href={{ route('login') }}><span
+                            class="font-bold text-violet-700 underline">Login</span></a>
+                </p>
             </form>
         </div>
     </section>
