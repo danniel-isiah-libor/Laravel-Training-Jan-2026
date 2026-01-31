@@ -47,4 +47,5 @@ Route::get('/get-grade', [UserController::class, 'getGrade']);
 Route::get('get-profile', [UserController::class, 'getProfile']);
 
 // Route::get();
-Route::view('/register', 'register', ['first_name' => 'Simon', 'last_name' => 'Javier']);
+Route::view('/register', 'register', ['first_name' => 'Simon', 'last_name' => 'Javier'])->name('register');
+Route::view('/login', 'login', ['first_name' => 'Simon', 'last_name' => 'Javier'])->name('login');
