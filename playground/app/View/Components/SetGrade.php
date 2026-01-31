@@ -23,13 +23,30 @@ class SetGrade extends Component
      */
     public function render(): View|Closure|string
     {
-        $color = match ($this->grade) {
-            'Failed' => 'red',
-            'Passed' => 'orange',
-            'Good' => 'blue',
-            'Excellent' => 'green',
-            default => 'black',
-        };
+        // $color = match ($this->grade) {
+        //     'Failed' => 'red',
+        //     'Passed' => 'orange',
+        //     'Good' => 'blue',
+        //     'Excellent' => 'green',
+        //     default => 'black',
+        // };
+
+        switch ($this->grade) {
+            case 'Failed':
+                $color = 'red';
+                break;
+            case 'Passed':
+                $color = 'orange';
+                break;
+            case 'Good':
+                $color = 'blue';
+                break;
+            case 'Excellent':
+                $color = 'green';
+                break;
+            default:
+                $color = 'black';
+        }
 
         return view('components.set-grade', [
             'grade' => $this->grade,

@@ -1,14 +1,13 @@
 <div>
-    <!-- Well begun is half done. - Aristotle -->
-    Fullname: {{ $fullName }}
+    <x-user-data label="Full Name" :value="$fullName" />
 
     <br>
 
-    Email: {{ $email }}
+    <x-user-data label="Email" :value="$email" />
 
     <br>
 
-    Username: {{ $userName }}
+    <x-user-data label="Username" :value="$userName" />
 
     <br>
 

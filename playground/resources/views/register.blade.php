@@ -9,7 +9,9 @@
     </head>
 
     <body>
-        <h1>Register Page</h1>
+        <x-alert />
+
+        <x-page-title title="Register Page" subtitle="create your account" />
 
         <x-input-field :firstName="$first_name" :lastName="$last_name" />
     </body>
