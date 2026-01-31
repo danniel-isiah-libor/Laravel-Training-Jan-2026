@@ -9,11 +9,8 @@
 </head>
 
 <body>
-    <h1>Register Page</h1>
-
-    {{ $first_name }}
-    {{ $last_name }}
-    {{-- Using ":" to preserve the data type --}}
+    <x-page-title title="Register Page" subtitle="Register your account now." />
+    <x-alert />
     <x-input-field :firstName="$first_name" :lastName="$last_name" />
 </body>
 
