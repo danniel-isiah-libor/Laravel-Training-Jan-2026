@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Requests;
 
+use function Pest\Laravel\session;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -47,5 +48,18 @@ class UserStoreRequest extends FormRequest
                     uncompromised(),
             ],
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.email' => "This is a custom error message",
+        ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $userId = session(['user_id']);
+        $this->merge(['user_id' => 1]);
     }
 }
