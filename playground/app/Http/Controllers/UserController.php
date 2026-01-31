@@ -22,7 +22,7 @@ class UserController extends Controller
             $output = 'Excellent';
         }
 
-        return $output;
+        return view('get-grade', ['grade' => $output]);
     }
 
     public function getDetails(Request $request)
