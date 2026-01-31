@@ -1,19 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout title="Register Page">
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <x-slot:header>
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                    alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
+                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">Sign in
+                    to your account</h2>
+            </div>
+        </x-slot:header>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form action="#" method="POST" class="space-y-6">
+                <x-form.input-field label="Name" name="name" />
 
-    <body>
-        <x-alert />
+                <x-form.input-field label="Email" name="email" type="email" />
 
-        <x-page-title title="Register Page" subtitle="create your account" />
+                <x-form.input-field label="Password" type="password" name="password" />
 
-        <x-input-field :firstName="$first_name" :lastName="$last_name" />
-    </body>
+                <x-form.input-field label="Confirm Password" type="password" name="password_confirmation" />
 
-</html>
+                <div>
+                    <button type="submit"
+                        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">Sign
+                        in</button>
+                </div>
+            </form>
+
+            <p class="mt-10 text-center text-sm/6 text-gray-500 dark:text-gray-400">
+                Not a member?
+                <a href="#"
+                    class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Start
+                    a 14 day free trial</a>
+            </p>
+        </div>
+    </div>
+</x-guest-layout>
