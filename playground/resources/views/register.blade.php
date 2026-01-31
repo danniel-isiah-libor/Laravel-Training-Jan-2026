@@ -1,10 +1,35 @@
 <x-guest-layout title="Register Page">
-    <x-slot:header>
-        <h1>This is a header</h1>
-    </x-slot:header>
-    <x-page-title title="Register Page" subtitle="Register your account now." />
-    <x-input-field :firstName="$first_name" :lastName="$last_name" />
-    <x-slot:footer>
-        <h1>This is a footer</h1>
-    </x-slot:footer>
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8">
+        <x-slot:header>
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                    alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
+                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">Sign in
+                    to your account</h2>
+            </div>
+        </x-slot:header>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form action="{{ route('register.store') }}" method="POST" class="space-y-6">
+                @csrf
+                <x-form.input-field label="Name" name="name" />
+                <x-form.input-field label="Email" name="email" type="email" />
+                <x-form.input-field label="Password" name="password" type="password" />
+                <x-form.input-field label="Confirm Password" name="password_confirmation" type="password" />
+                <button type="submit"
+                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6
+        font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2
+        focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400
+        dark:focus-visible:outline-indigo-500">Register</button>
+            </form>
+            <p class="mt-10 text-center text-sm/6 text-gray-500 dark:text-gray-400">
+                Not a member?
+                <a href="#"
+                    class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Start
+                    a 14 day free trial</a>
+            </p>
+        </div>
+    </div>
 </x-guest-layout>

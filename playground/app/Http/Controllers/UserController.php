@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -43,6 +44,39 @@ class UserController extends Controller
 
         $output = "Full Name: $fullName<br />Email: $email<br />Username: $username";
         return view('user-profile', ['fullName' => $fullName, 'email' => $email, 'username' => $username, 'render' => $render]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'     => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'email'    => [
+                'required',
+                'string',
+                'email:dns,rfc',
+                'max:255',
+                'unique:users',
+            ],
+            'password' => [
+                'string',
+                'confirmed',
+                Password::min(8)->
+                    max(12)->
+                    required()->
+                    letters()->
+                    numbers()->
+                    symbols()->
+                    mixedCase()->
+                    uncompromised(),
+            ],
+        ]);
+        $name     = $request->name;
+        $email    = $request->email;
+        $password = $request->password;
     }
 }
 {
