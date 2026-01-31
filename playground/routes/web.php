@@ -77,3 +77,11 @@ Route::get('/form/grade', function (Request $request) {
  */
 Route::get('/get-grade', [UserController::class, 'getGrade']);
 Route::get('/get-profile', [UserController::class, 'getDetails']);
+
+/**
+ * We need to make a router in order to locate the register.blade.php
+ */
+Route::view('register', 'register', [
+    'first_name'=>'John',
+    'last_name'=>'Doe',
+]);
