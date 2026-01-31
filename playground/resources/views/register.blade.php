@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guess-layout>
+    <section class="py-6">
+        <div class="max-w-md mx-auto">
+            <h1 class="text-center font-bold text-4xl mb-6">Register</h1>
+            <form action="{{ route('register.store') }}" method="POST" class="space-y-6">
+                @csrf
+                <div class="flex flex-col">
+                    <x-register-form label="Name" type="text" placeholder="Name" name="name" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+                    <x-register-form label="Email" type="email" placeholder="Email" name="email" />
 
-<body>
-    <h1>Register Page</h1>
+                    <x-register-form label="Password" type="text" placeholder="Password" name="password" />
 
-    <x-input-field :firstName="$first_name" :lastName="$last_name" />
-</body>
+                    <x-register-form label="Confirm Password" type="text" placeholder="Confirm Password"
+                        name="password_confirmation" btn="submit" />
 
-</html>
+                    <button
+                        class="py-2 px-3 font-bold bg-violet-800 hover:bg-violet-700 text-white rounded-lg mt-3 cursor-pointer">Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</x-guess-layout>

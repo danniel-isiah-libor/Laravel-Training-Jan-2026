@@ -4,22 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
     public function getGrade(Request $request)
     {
-        $grade = $request->grade;
+        $grade = $request->grade ?? 75; // default grade if not provided
 
-        if ($grade < 75) {
-            return "Failed";
-        } elseif ($grade >= 75 && $grade <= 80) {
-            return "Passed";
-        } elseif ($grade > 80 && $grade <= 95) {
-            return "Good";
-        } elseif ($grade > 95) {
-            return "Excellent";
-        }
+        return view('grade', ['grade' => $grade]);
     }
 
     public function getProfile(Request $request)
@@ -47,5 +40,41 @@ class UserController extends Controller
             'userName' => $username,
             'render' => $render,
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email:dns,rfc',
+                'max:255',
+                'unique:users'
+            ],
+            'password' => [
+                'string',
+                'confirmed',
+                Password::min(8)
+                    ->max(12)
+                    ->required()
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+                    ->mixedCase()
+                    ->uncompromised()
+            ],
+
+        ]);
+
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+        dd($request);
     }
 }

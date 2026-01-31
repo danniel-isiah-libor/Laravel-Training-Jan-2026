@@ -46,6 +46,8 @@ Route::get('/', function () {
 
 Route::get('/profile', [UserController::class, 'getProfile']);
 
-Route::get('/grades', [UserController::class, 'getGrade']);
+Route::get('/grade', [UserController::class, 'getGrade']);
 
-Route::view('/register', 'register', ['first_name' => 'John', 'last_name' => 'Doe']);
+Route::view('/register', 'register')->name('register.page');
+
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
