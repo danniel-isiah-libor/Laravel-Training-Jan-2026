@@ -36,7 +36,7 @@ Route::redirect('/from', '/users/settings')->name('redirect.to.settings');
 // });
 
 Route::get('/form', function (Request $request) {
-    $name = $request->name;
+    /* $name = $request->name; */
 
     $birthDate = $request->date('birthdate');
 
@@ -47,4 +47,4 @@ Route::get('/get-grade', [UserController::class, 'getGrade']);
 Route::get('get-profile', [UserController::class, 'getProfile']);
 
 // Route::get();
-Route::view('/register', 'register', ['first_name' => 'John', 'last_name' => 'Doe']);
+Route::view('/register', 'register', ['first_name' => 'Simon', 'last_name' => 'Javier']);
