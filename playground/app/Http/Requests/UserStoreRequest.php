@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests;
 
-use function Pest\Laravel\session;
+use App\Rules\PasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -46,6 +46,7 @@ class UserStoreRequest extends FormRequest
                     symbols()->
                     mixedCase()->
                     uncompromised(),
+                new PasswordRule,
             ],
         ];
     }
@@ -59,7 +60,7 @@ class UserStoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $userId = session(['user_id']);
-        $this->merge(['user_id' => 1]);
+        // $userId = session(['user_id']);
+        // $this->merge(['user_id' => 1]);
     }
 }
