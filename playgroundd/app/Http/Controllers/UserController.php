@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\UserStoreRequest;
 
 class UserController extends Controller
 {
@@ -51,28 +52,12 @@ public function getGrade(Request $request)
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => ['required','string','max:255'],
-            'email' => ['required','string','email:dns,rfc','max:255','unique:users'],
-            'password' => [
-               'string',
-               'confirmed',
-                \Illuminate\Validation\Rules\Password::min(8)
-                    ->letters()
-                    ->required()
-                    ->mixedCase()
-                    ->numbers()
-                    ->symbols()
-                    ->uncompromised(),
-            ]
-        ]);
     
-        $name = $request->name;
-        $email = $request->email;
-        $password = $request->password;
+    public function store(UserStoreRequest $request)
+    {
+        $validatedFrom = $request->validated();
 
+            
       
     }
 
