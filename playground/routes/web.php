@@ -45,3 +45,6 @@ Route::get('/form', function (Request $request) {
 
 Route::get('/get-grade', [UserController::class, 'getGrade']);
 Route::get('get-profile', [UserController::class, 'getProfile']);
+
+// Route::get();
+Route::view('/register', 'register', ['first_name' => 'John', 'last_name' => 'Doe']);
