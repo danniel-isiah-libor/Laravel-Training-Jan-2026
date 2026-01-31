@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -14,41 +15,65 @@ public function getGrade(Request $request)
 
     if ($score < 75) {
         $output = 'Failed';
-    } else if ($score >= 75 && $score <= 80) {
+    } else if ($score >= 75 && $score < 80) {
         $output = 'Passed';
-    } else if ($score >= 81 && $score <= 90) {
+    } else if ($score >= 80 && $score < 95) {
         $output = 'Good';
-    } elseif ($score >= 91 && $score <= 100) {
+    } else  {
         $output = 'Excellent';
     }
 
-    return $output;
+    return view('get-grade', ['grade' => $output]);
 }
 
     public function getProfile(Request $request)
     {
 
-        $fullName = $request->fullName; 
-        $email = $request->email;       
-        $userName = $request->userName; 
-
-        $user = User::getData();
+        $fullName = $request->fullName;
+        $email = $request->email;
+        $userName = $request->userName;
 
         if (empty($fullName) && empty($email) && empty($userName)) {
+            $user = User::getData(); // perform query....
+
             $fullName = $user->fullName;
             $email = $user->email;
             $userName = $user->userName;
         }
 
-       // return "Full Name: " . $fullName . "<br>Email: " . $email . "<br>Username: " . $userName;   
+        // $output = "Full Name: $fullName <br> Email: $email <br> Username: $userName";
 
         return view('user-profile', [
             'fullName' => $fullName,
             'email' => $email,
-            'userName' => $userName 
+            'userName' => $userName,
+            'render' => '<h1 style="color:red">Test</h1>',
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required','string','max:255'],
+            'email' => ['required','string','email:dns,rfc','max:255','unique:users'],
+            'password' => [
+               'string',
+               'confirmed',
+                \Illuminate\Validation\Rules\Password::min(8)
+                    ->letters()
+                    ->required()
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+            ]
+        ]);
+    
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
 
+      
+    }
 
 }

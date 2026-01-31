@@ -48,4 +48,7 @@ Route::get('/user/{username}', function ($username) {
 Route::get('/get-grade', [UserController::class, 'getGrade']);
     
 Route::get('/get-profile', [UserController::class, 'getProfile']);
-     
+
+Route::view('/register', 'register')->name('register.page');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+    
