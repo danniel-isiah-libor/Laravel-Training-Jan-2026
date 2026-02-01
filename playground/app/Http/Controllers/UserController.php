@@ -50,10 +50,10 @@ class UserController extends Controller
     {
         $validatedForm = $request->validated();
 
-    // Option 1
-        User::created($validatedForm);
-
-    // Option 2
+        // Option 1
+        $user = User::created($validatedForm);
+        dd($user);
+        // Option 2
         // $user           = new User();
         // $user->name     = $validatedForm['name'];
         // $user->email    = $validatedForm['email'];
