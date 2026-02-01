@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Http\Requests\UserAuthenticateRequest;
-=======
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,32 +12,13 @@ class UserController extends Controller
 {
     public function getGrade(Request $request)
     {
-<<<<<<< HEAD
         $grade = $request->grade ?? 75; // default grade if not provided
 
         return view('grade', ['grade' => $grade]);
-=======
-        $score = $request->score;
-
-        $output = '';
-
-        if ($score < 75) {
-            $output = 'Failed';
-        } else if ($score >= 75 && $score < 80) {
-            $output = 'Passed';
-        } else if ($score >= 80 && $score < 95) {
-            $output = 'Good';
-        } else {
-            $output = 'Excellent';
-        }
-
-        return view('get-grade', ['grade' => $output]);
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
     }
 
     public function getProfile(Request $request)
     {
-<<<<<<< HEAD
         $name = $request->name;
         $email = $request->email;
         $username = $request->username;
@@ -63,27 +41,6 @@ class UserController extends Controller
             'email' => $email,
             'userName' => $username,
             'render' => $render,
-=======
-        $fullName = $request->fullName;
-        $email = $request->email;
-        $userName = $request->userName;
-
-        if (empty($fullName) && empty($email) && empty($userName)) {
-            $user = User::getData(); // perform query....
-
-            $fullName = $user->fullName;
-            $email = $user->email;
-            $userName = $user->userName;
-        }
-
-        // $output = "Full Name: $fullName <br> Email: $email <br> Username: $userName";
-
-        return view('user-profile', [
-            'fullName' => $fullName,
-            'email' => $email,
-            'userName' => $userName,
-            'render' => '<h1 style="color:red">Test</h1>',
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
         ]);
     }
 
@@ -93,7 +50,6 @@ class UserController extends Controller
 
         dd($validatedForm);
     }
-<<<<<<< HEAD
 
     public function authenticate(UserAuthenticateRequest $request)
     {
@@ -101,6 +57,4 @@ class UserController extends Controller
 
         dd($validatedForm);
     }
-=======
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 }

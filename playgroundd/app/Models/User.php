@@ -50,14 +50,9 @@ class User extends Authenticatable
     {
         return (object)[
             'fullName' => 'John Doe',
-<<<<<<< HEAD
             'email' => 'johndoe@gmail.com',
             'userName' => 'johndoe',
             'render' => '<h1 style="color:red;"> Test </h1>',
-=======
-            'email' => 'johndoe@mail.test',
-            'userName' => 'johndoe',
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
         ];
     }
 }

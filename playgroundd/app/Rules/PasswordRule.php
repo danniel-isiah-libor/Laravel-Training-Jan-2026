@@ -18,11 +18,7 @@ class PasswordRule implements ValidationRule
         $name = strtolower(request()->name);
         $password = strtolower($value);
 
-<<<<<<< HEAD
         $names = explode(' ', strtolower($name));
-=======
-        $names = explode(' ', $name);
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 
         collect($names)->each(function ($name) use ($password, $fail) {
             if (Str::contains($password, $name)) {

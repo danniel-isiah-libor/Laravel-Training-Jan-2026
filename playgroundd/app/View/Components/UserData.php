@@ -6,14 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Alert extends Component
+class UserData extends Component
 {
+    private $label, $value;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($label, $value)
     {
         //
+        $this->label = $label;
+        $this->value = $value;
     }
 
     /**
@@ -21,14 +24,6 @@ class Alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return <<<'blade'
-<div>
-<<<<<<< HEAD
-    <h1> This is a warning! </h1>
-=======
-    <h1> This is a warning alert—check it out! </h1>
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
-</div>
-blade;
+        return view('components.user-data', ['label' => $this->label, 'value' => $this->value]);
     }
 }

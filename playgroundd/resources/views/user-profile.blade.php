@@ -1,5 +1,4 @@
 <div>
-<<<<<<< HEAD
     {{-- Fullname: {{ $fullName }} --}}
     <x-user-data label="Full Name" :value="$fullName" />
 
@@ -15,23 +14,4 @@
 
     {!! $render !!}
     <!-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi -->
-=======
-    <x-user-data label="Full Name" :value="$fullName" />
-
-    <br>
-
-    <x-user-data label="Email" :value="$email" />
-
-    <br>
-
-    <x-user-data label="Username" :value="$userName" />
-
-    <br>
-
-    {!! $render !!}
-
-    <?php
-    echo $render;
-    ?>
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 </div>

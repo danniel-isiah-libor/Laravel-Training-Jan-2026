@@ -23,11 +23,7 @@ class Alert extends Component
     {
         return <<<'blade'
 <div>
-<<<<<<< HEAD
     <h1> This is a warning! </h1>
-=======
-    <h1> This is a warning alert—check it out! </h1>
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 </div>
 blade;
     }

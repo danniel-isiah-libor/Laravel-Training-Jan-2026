@@ -9,10 +9,6 @@ use Illuminate\View\Component;
 class InputField extends Component
 {
     private $firstName, $lastName;
-<<<<<<< HEAD
-=======
-
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
     /**
      * Create a new component instance.
      */

@@ -48,37 +48,22 @@ class UserStoreRequest extends FormRequest
                     ->mixedCase()
                     ->uncompromised(),
                 new PasswordRule
-<<<<<<< HEAD
             ],
         ];
     }
 
 
     // this is creating a custom error messages
-=======
-            ]
-
-        ];
-    }
-
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
     public function messages()
     {
         return [
             'email.email' => 'This is custom error message',
-<<<<<<< HEAD
 
 
         ];
     }
 
     public function prepareForValidation()
-=======
-        ];
-    }
-
-    protected function prepareForValidation()
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
     {
         // $userId = session('user_id');
 

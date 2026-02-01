@@ -1,10 +1,6 @@
 <div>
-<<<<<<< HEAD
     <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
 
     {{ $fullName }}
 
-=======
-    {{ $fullName }}
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 </div>

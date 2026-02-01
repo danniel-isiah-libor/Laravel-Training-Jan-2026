@@ -1,10 +1,6 @@
 <div>
-<<<<<<< HEAD
     <!-- Simplicity is an acquired taste. - Katharine Gerould -->
     <p>
         <span style="font-weight: bold;">{{ $label }}</span>: {{ $value }}
     </p>
-=======
-    <strong>{{ $label }}:</strong> {{ $value }}
->>>>>>> 49d2a3351118769ba4c914b03815f1ea8256cc12
 </div>
