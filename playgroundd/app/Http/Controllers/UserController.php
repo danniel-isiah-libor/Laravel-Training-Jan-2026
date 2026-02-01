@@ -6,6 +6,7 @@ use App\Http\Requests\UserAuthenticateRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -48,7 +49,35 @@ class UserController extends Controller
     {
         $validatedForm = $request->validated();
 
-        dd($validatedForm);
+        //option 1
+        // auto adapt to new column
+        // $user = User::create($validatedForm);
+        dd($user);
+
+        // option 2
+        // $user = new User();
+        // $user->name = $validatedForm['name'];
+        // $user->email = $validatedForm['email'];
+        // $user->save();
+
+        // option 3
+        // accepts multidimensional array
+        // User::insert([
+        //     'name' => $validatedForm['name'],
+        //     'email' => $validatedForm['email'],
+        // ]);
+
+        // // updating
+        // // User::where('id', '=', 1)->update([
+        // //     'name' => 'Updated Name',
+        // // ]); // select * from users where id = 1
+
+        // // deleting
+        // // User::where('id', '=', 1)->delete();
+
+        // // User::where('id', '=', 1)->first(); // select * from users where id = 1 LIMIT 1
+        // $user = User::where('id', '=', 1)->get(); // collection of multiple user model
+        // dd($user);
     }
 
     public function authenticate(UserAuthenticateRequest $request)

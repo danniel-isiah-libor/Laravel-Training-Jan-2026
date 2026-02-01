@@ -55,4 +55,12 @@ class User extends Authenticatable
             'render' => '<h1 style="color:red;"> Test </h1>',
         ];
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+
+        // return $this->hasOne();
+        // return $this->hasOneThrough();
+    }
 }
