@@ -57,8 +57,32 @@ public function getGrade(Request $request)
     {
         $validatedFrom = $request->validated();
 
-            
-      
+            //Direct to DB
+        // DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
+        //     $validatedFrom['name'],
+        //     $validatedFrom['email'],
+        //     Hash::make($validatedFrom['password']),
+        // ]);
+
+            //Option 1
+        $user = User::create($validatedFrom);
+
+        dd($user);
+            //Option 2
+        // $user = new User();
+        // $user->name = $validatedFrom['name'];
+        // $user->email = $validatedFrom['email'];
+        // $user->username = $validatedFrom['username'];
+        // $user->password = $validatedFrom['password'];
+        // $user->save();
+
+            //option3
+        // User::insert([
+        //     'name' => $validatedFrom['name'],
+        //     'email' => $validatedFrom['email'],
+        //     'username' => $validatedFrom['username'],
+        //     'password' => $validatedFrom['password'],
+        // ]);
     }
 
 }

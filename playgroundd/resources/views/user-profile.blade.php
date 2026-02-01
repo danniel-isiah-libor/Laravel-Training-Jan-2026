@@ -1,5 +1,5 @@
 <div>
-    <x-user-data label="Full Name" :value="$fullName" />
+    <x-user-data label="Fullname" :value="$fullName" />
 
     <br>
 
