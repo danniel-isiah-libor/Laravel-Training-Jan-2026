@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -83,3 +84,10 @@ Route::get('/get-profile', [UserController::class, 'getDetails']);
  */
 Route::view('register', 'register')->name('register.page');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+/**
+ * Login/Logout routes - Session Management
+ */
+Route::get('/login', [SessionController::class, 'create'])->name('login.page');
+Route::post('/login', [SessionController::class, 'store'])->name('login.store');
+Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');

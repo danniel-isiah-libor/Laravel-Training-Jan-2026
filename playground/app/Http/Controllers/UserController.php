@@ -49,7 +49,17 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         $validatedForm = $request->validated();
-        dd($validatedForm);
+
+    // Option 1
+        User::created($validatedForm);
+
+    // Option 2
+        // $user           = new User();
+        // $user->name     = $validatedForm['name'];
+        // $user->email    = $validatedForm['email'];
+        // $user->password = $validatedForm['password'];
+        // $user->save();
+
     }
 }
 {
