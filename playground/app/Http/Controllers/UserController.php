@@ -56,5 +56,18 @@ class UserController extends Controller
         $validatedForm = $request->validated();
 
         dd($validatedForm);
+        //option 1
+        User::create($validatedForm);
+
+
+        //option 2
+        // user::insert($validatedForm);
+        //$user = new User();
+        //$user->name = $validatedForm['name'];
+        //$user = new User(); 
+        //$user->email = $validatedForm['email'];
+        //$user->password = $validatedForm['password'];
+        //$user->save();
+
     }
 }
