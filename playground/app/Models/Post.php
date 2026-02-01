@@ -9,4 +9,10 @@ class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+
+    public function user()
+    {
+        //turn $this->belongsTo(User::class);
+        //turn $this->belongsToMany(User::class);
+    }
 }

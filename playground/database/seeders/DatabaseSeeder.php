@@ -22,4 +22,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
     }
+
+    //post = Post::where('id', 1)
+    //>join('users',function($join){
+    //   $join->on('posts.user_id', '=', 'users.id')->where(....);
+    //})
+    //>where('users.active',false
+    //->first();
+
 }

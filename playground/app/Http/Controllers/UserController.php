@@ -6,6 +6,7 @@ use App\Http\Requests\UsersStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Pest\Concerns\Retrievable;
 
 class UserController extends Controller
 {
@@ -71,3 +72,17 @@ class UserController extends Controller
 
     }
 }
+
+
+//updating
+//User::where('id', '=',1)->update([
+//'name' => 'Updated Name',
+//]);
+//select *from users where id=1
+
+//deleting
+//User::where('id', '=',1)->delete();
+
+// retrieve
+//$users = User::where('id', '=', 1)->first();
+//dd($users);
