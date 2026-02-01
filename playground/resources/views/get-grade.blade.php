@@ -1,4 +1,4 @@
-<x-layout title="Grade">
+<x-layout pageTitle="Grade">
     <div>
         <x-set-grade :grade="$grade" />
     </div>

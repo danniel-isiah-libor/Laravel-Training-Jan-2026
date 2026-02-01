@@ -1,4 +1,4 @@
-<x-layout title="Login Page">
+<x-layout pageTitle="Login Page">
     <main>
         <div class="container mx-auto">
             <form class="lg:w-[30%] flex flex-col mx-auto p-5 gap-5 mt-5" method="post" action="{{ route('login.post') }}">

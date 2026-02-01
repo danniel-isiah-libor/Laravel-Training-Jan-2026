@@ -1,7 +1,7 @@
 <div class="flex items-start gap-2 mb-4">
     <img src="{{ $author_profile_img }}" class="rounded-full w-10" alt="">
     <div class="flex flex-col text-sm w-full">
-        <h3 class="font-bold">{{ $author_name }} <span class="text-neutral-500 font-normal">{{ $author_username }}</span></h3>
+        <h3 class="font-bold">{{ $author_name }} <span class="text-neutral-500 font-normal">{{ $author_username }} • {{ $time_ago }}</span></h3>
         <p>{{ $post_content }}</p>
         <img src="{{ $post_image }}" class="mt-4" alt="">
         <div class="flex mt-4 justify-between">

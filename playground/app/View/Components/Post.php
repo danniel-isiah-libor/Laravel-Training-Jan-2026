@@ -17,6 +17,7 @@ class Post extends Component
         private string $authorUsername,
         private string $postContent,
         private ?string $postImage,
+        private string $timeAgo,
     ) {
         $this->authorUsername = "@{$this->authorUsername}";
         $this->postImage = $this->postImage ?? "";
@@ -32,7 +33,8 @@ class Post extends Component
             'author_name' => $this->authorName,
             'author_username' => $this->authorUsername,
             'post_content' => $this->postContent,
-            'post_image' => $this->postImage
+            'post_image' => $this->postImage,
+            'time_ago' => $this->timeAgo
         ]);
     }
 }

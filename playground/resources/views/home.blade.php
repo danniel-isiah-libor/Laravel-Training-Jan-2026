@@ -1,4 +1,4 @@
-<x-layout title="Home Page" class="flex">
+<x-layout pageTitle="Home Page" class="flex flex-col md:flex-row">
     <x-side-nav />
     <main class="md:border-x md:border-x-neutral-800 basis-full md:basis-8/12">
         <header>
@@ -16,7 +16,11 @@
                                 id="post_content" placeholder="What's happening?"></textarea>
                             <div id="img_container" class="hidden relative">
                                 <button type="button" id="img_remove" class="cursor-pointer absolute top-1 right-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                        width="24px" fill="#FFFFFF">
+                                        <path
+                                            d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z" />
+                                    </svg>
                                 </button>
                                 <img src="" id="img_preview" alt="">
                             </div>
@@ -28,7 +32,8 @@
                                 </label>
                                 <input type="file" id="img_input" accept="images/*" hidden>
                             </div>
-                            <button type="submit" class="ml-auto text-xs px-8 py-2 bg-sky-500 rounded-4xl cursor-pointer font-bold">Post</button>
+                            <button type="submit"
+                                class="ml-auto text-xs px-8 py-2 bg-sky-500 rounded-4xl cursor-pointer font-bold">Post</button>
                         </div>
                     </form>
                 </div>
@@ -36,28 +41,31 @@
         </header>
         <x-forms.separator thickness="3px" />
         <div class="grid grid-cols-1">
-            <div class="container mx-auto px-3 mt-3">
-                <x-post
-                    authorProfileImg="https://i.pravatar.cc/30"
-                    authorName="Simon Javier"
-                    authorUsername="simonjavier"
-                    postContent="Life Update : I’m joining a new company today. Honored to have worked with amazing people. Hope I don’t go back. Yay!"
-                    postImage="https://picsum.photos/id/237/400/300"
-                />
-            </div>
-            <x-forms.separator />
-            <div class="container mx-auto px-3 mt-3">
-                <x-post
-                    authorProfileImg="https://i.pravatar.cc/30"
-                    authorName="Simon Javier"
-                    authorUsername="simonjavier"
-                    postContent="Life Update : I’m joining a new company today. Honored to have worked with amazing people. Hope I don’t go back. Yay!"
-                    postImage="https://picsum.photos/id/237/400/300"
-                />
-            </div>
-            <x-forms.separator />
+            @foreach ($posts as $post)
+                @php
+                    $authorName = $post->user->first_name . ' ' . $post->user->last_name;
+                    $authorUsername = strtolower($post->user->first_name . $post->user->last_name);
+                    $postContent = $post->content;
+                    $timeAgo = str_replace(
+                        ' ago',
+                        '',
+                        $post->created_at->diffForHumans([
+                            'short' => true,
+                            'parts' => 1,
+                        ]),
+                    );
+                @endphp
+
+                <div class="container mx-auto px-3 mt-3">
+                    <x-post authorProfileImg="https://i.pravatar.cc/30" :authorName="$authorName"
+                        :authorUsername="$authorUsername" :postContent="$postContent"
+                        :timeAgo="$timeAgo" />
+                </div>
+                <x-forms.separator />
+            @endforeach
         </div>
     </main>
+    <x-footer-nav />
 
     @vite(['resources/js/home.js'])
 </x-layout>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserStoreRequest;
+use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,6 +55,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function home()
+    {
+        $posts = Post::latest()->get();
+
+        return view('home', ['posts' => $posts]);
+    }
+
     public function store(UserStoreRequest $request)
     {
         $validated = $request->validated();
@@ -84,5 +93,15 @@ class UserController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('login'));
     }
 }

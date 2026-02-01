@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,11 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        /* $user = User::with(['posts'])->where('id', 1)->get(); */
+        /* dd($user->toArray()); */
 
-        User::factory()->create([
-            'first_name' => 'Test',
-            'last_name' => 'User',
-            'email' => 'test@example.com',
-        ]);
+        $post = Post::with(['user'])->where('id', 3)->get();
+        dd($post->toArray());
+
+        $this->call(PostSeeder::class);
     }
 }

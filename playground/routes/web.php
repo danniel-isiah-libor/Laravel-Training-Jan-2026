@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::view('/', 'welcome');
-
-Route::get('/hello', function () {
-    return 'Hello, World!';
-});
 
 Route::prefix('users')->name('users.')->middleware('auth')->group(function () {
     // /users/profile/edit
@@ -27,6 +22,8 @@ Route::prefix('users')->name('users.')->middleware('auth')->group(function () {
     Route::get('settings', function () {
         return 'User Settings Page';
     })->name('settings');
+
+    Route::post('/logout', [UserController::class, 'destroy'])->name('logout');
 });
 
 Route::redirect('/from', '/users/settings')->name('redirect.to.settings');
@@ -46,12 +43,19 @@ Route::get('/form', function (Request $request) {
 Route::get('/get-grade', [UserController::class, 'getGrade']);
 Route::get('get-profile', [UserController::class, 'getProfile']);
 
-// Route::get();
-Route::view('/register', 'register')->name('register.page');
-Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::middleware('guest')->group(function () {
 
-Route::view('/login', 'login')->name('login');
+    Route::view('/', 'welcome');
 
-Route::post('/login', [UserController::class, 'login'])->name('login.post');
+    Route::get('/hello', function () {
+        return 'Hello, World!';
+    });
 
-Route::view('/home', 'home')->name('home')->middleware('auth');
+    Route::view('/register', 'register')->name('register.page');
+    Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+    Route::view('/login', 'login')->name('login');
+    Route::post('/login', [UserController::class, 'login'])->name('login.post');
+});
+
+Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('auth');
