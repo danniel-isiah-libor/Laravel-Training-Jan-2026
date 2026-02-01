@@ -1,0 +1,4 @@
+
+<div>
+    {{ $fullName }}
+</div>
