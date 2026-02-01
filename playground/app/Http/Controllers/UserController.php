@@ -51,7 +51,7 @@ class UserController extends Controller
         $validatedForm = $request->validated();
 
         // Option 1
-        $user = User::created($validatedForm);
+        $user = User::create($validatedForm);
         dd($user);
         // Option 2
         // $user           = new User();
@@ -60,6 +60,23 @@ class UserController extends Controller
         // $user->password = $validatedForm['password'];
         // $user->save();
 
+        /**
+         * FOr updating purposes
+         */
+        // User::where('id', '=', 1)->update([
+        //     'name' => 'Updated Name',
+        // ]);
+
+        /**
+         * For deletion
+         */
+        // User::where('id', '=', 1)->delete();
+
+        // User::select('*')->where('id', '=', 1);\
+
+        $user = User::where('id', '=', 1)->first();
+        // dd($user);
+        // User::where('id', '=', 1)->get();
     }
 }
 {
