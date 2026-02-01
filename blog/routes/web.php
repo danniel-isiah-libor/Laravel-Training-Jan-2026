@@ -7,10 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('/dashboard', [PostController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 require __DIR__ . '/settings.php';
 
-Route::resource('/posts', PostController::class);
+Route::resource('/posts', PostController::class)->except('index');

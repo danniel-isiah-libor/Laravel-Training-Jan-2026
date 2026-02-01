@@ -19,7 +19,7 @@ class PostFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title'   => fake()->sentence(),
-            'body'    => fake()->paragraphs(),
+            'body'    => fake()->paragraph(),
         ];
     }
 }

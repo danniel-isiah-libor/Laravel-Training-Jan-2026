@@ -12,7 +12,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $posts = Post::all();
+        // $posts = Post::paginate(3);
+        $posts = Post::simplePaginate(3);
+        return view('dashboard', ['posts' => $posts]);
     }
 
     /**
@@ -40,7 +43,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+
     }
 
     /**
