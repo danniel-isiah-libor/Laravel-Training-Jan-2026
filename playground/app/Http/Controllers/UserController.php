@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -59,8 +60,28 @@ public function getGrade(Request $request) {
 
     public function store(UserStoreRequest $request)
     {
-        $validateForm = $request->validated();
-        dd($validateForm);
+         $validateForm = $request->validated();
+
+        // //option 1
+        // User::create($validateForm);
+
+
+        // //option 2
+        // $user = new User();
+
+        // //updating...
+        // User::where('id', '=', 1)->update([
+        //     'name' => 'Updated name',
+        // ]);
+
+        //deleting...
+        //User::where('id', '=', 1)->delete();
+
+        //retrieving
+        //User::where('id','=',1)->get();
+
+        
     }
+
 }
 

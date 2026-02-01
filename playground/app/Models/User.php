@@ -54,4 +54,14 @@ class User extends Authenticatable
             'username' => 'john117',
         ];
     }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+
+       // $this->hasManyThrough();
+       // $this->hasOne();
+       // $this->hasOneThrough();
+    }
+
 }
