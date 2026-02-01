@@ -16,7 +16,7 @@
         <title>{{ $title ?? 'App' }}</title>
     </head>
 
-    <body {{ $attributes->merge(['class' => 'min-h-full']) }}>
+    <body {{ $attributes->merge(['class' => 'min-h-lvh']) }}>
             {{ $slot }}
     </body>
 

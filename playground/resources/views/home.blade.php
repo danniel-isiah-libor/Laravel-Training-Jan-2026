@@ -1,6 +1,6 @@
 <x-layout title="Home Page" class="flex">
     <x-side-nav />
-    <main class="md:border-x md:border-x-neutral-800 basis-full md:basis-9/12">
+    <main class="md:border-x md:border-x-neutral-800 basis-full md:basis-8/12">
         <header>
             <div class="container mx-auto p-3">
                 <h1 class="text-lg font-bold">Home</h1>
