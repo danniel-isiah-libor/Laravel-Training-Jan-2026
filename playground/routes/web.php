@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::prefix('users')->name('users.')->middleware('auth')->group(function () {
     })->name('settings');
 
     Route::post('/logout', [UserController::class, 'destroy'])->name('logout');
+});
+
+Route::prefix('post')->name('post.')->middleware('auth')->group(function () {
+    Route::post('/create', [PostController::class, 'store'])->name('create');
 });
 
 Route::redirect('/from', '/users/settings')->name('redirect.to.settings');

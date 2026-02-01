@@ -9,7 +9,7 @@
             <div class="container mx-auto p-3">
                 <div class="flex items-start gap-2">
                     <img src="https://i.pravatar.cc/30" class="rounded-full w-10" alt="">
-                    <form action="" method="post" class="w-full flex flex-col gap-2">
+                    <form action="{{ route('post.create') }}" method="post" class="w-full flex flex-col gap-2" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-col gap-2">
                             <textarea class="resize-none overflow-hidden w-full focus-visible: outline-none" name="post_content" rows="2"
@@ -30,7 +30,7 @@
                                 <label for="img_input" class="cursor-pointer">
                                     <img src="{{ asset('images/img-logo.svg') }}" alt="">
                                 </label>
-                                <input type="file" id="img_input" accept="images/*" hidden>
+                                <input type="file" id="img_input" name="img_input" accept="images/*" hidden>
                             </div>
                             <button type="submit"
                                 class="ml-auto text-xs px-8 py-2 bg-sky-500 rounded-4xl cursor-pointer font-bold">Post</button>
