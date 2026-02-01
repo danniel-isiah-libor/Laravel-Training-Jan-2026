@@ -83,6 +83,21 @@ public function getGrade(Request $request)
         //     'username' => $validatedFrom['username'],
         //     'password' => $validatedFrom['password'],
         // ]);
+
+        //updating data........
+    //    User::where('id', '=', 1)->update([
+    //     'name' => 'Updated Name',
+    //    ]);
+        //select * from users where id = 1 same as above
+    
+        //deleting data........
+       // User::where('id', '=', 1)->delete();
+
+       //data retrieving.......
+       //User::where('id', '=', 1)->get();
+       //select * from users where id = 1 LIMIT 1 same as above, first
+
+        
     }
 
 }
