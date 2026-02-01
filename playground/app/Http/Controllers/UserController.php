@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -56,6 +57,32 @@ class UserController extends Controller
     {
         $validatedForm = $request->validated();
 
-        dd($validatedForm);
+        // DB::insert("INSERT INTO users (fullName, email, userName, password) VALUES (?, ?, ?, ?)", [
+        //     $validatedForm['fullName'],
+        //     $validatedForm['email'],
+        //     $validatedForm['userName'],
+        //     bcrypt($validatedForm['password']),
+        // ]);
+
+        // option 1
+        User::create($validatedForm);
+
+        // option 2
+        // $user = new User();
+        // $user->name = $validatedForm['name'];
+        // $user->email = $validatedForm['email'];
+        // $user->userName = $validatedForm['userName'];
+        // $user->password = $validatedForm['password'];
+        // $user->save();
+
+        // option 3
+        // User::insert([
+        //     [
+        //         'name' => $validatedForm['name'],
+        //         'email' => $validatedForm['email'],
+        //         'userName' => $validatedForm['userName'],
+        //         'password' => bcrypt($validatedForm['password']),
+        //     ],
+        // ]);
     }
 }
