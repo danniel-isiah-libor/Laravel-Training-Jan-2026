@@ -2,7 +2,11 @@
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <flux:card>
             <div class="mb-4 flex items-center justify-between">
-                <flux:heading size="lg">{{ $post->title }}</flux:heading>
+                <div class="">
+                    <flux:text class="whitespace-pre-wrap">{{ $post->user->name }}</flux:text>
+                    <flux:text class="mb-2 whitespace-pre-wrap">{{ $post->user->email }}</flux:text>
+                    <flux:heading size="lg">{{ $post->title }}</flux:heading>
+                </div>
                 <div class="flex gap-2">
                     <flux:button href="{{ route('posts.edit', $post) }}" variant="primary" size="sm">Edit
                     </flux:button>
