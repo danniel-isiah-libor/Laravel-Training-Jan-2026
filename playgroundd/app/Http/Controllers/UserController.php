@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\UserStoreRequest;
+
+class UserController extends Controller
+{
+public function getGrade(Request $request)
+{   
+    $score = $request->score;
+    $output = '';
+
+    if ($score < 75) {
+        $output = 'Failed';
+    } else if ($score >= 75 && $score < 80) {
+        $output = 'Passed';
+    } else if ($score >= 80 && $score < 95) {
+        $output = 'Good';
+    } else  {
+        $output = 'Excellent';
+    }
+
+    return view('get-grade', ['grade' => $output]);
+}
+
+    public function getProfile(Request $request)
+    {
+
+        $fullName = $request->fullName;
+        $email = $request->email;
+        $userName = $request->userName;
+
+        if (empty($fullName) && empty($email) && empty($userName)) {
+            $user = User::getData(); // perform query....
+
+            $fullName = $user->fullName;
+            $email = $user->email;
+            $userName = $user->userName;
+        }
+
+        // $output = "Full Name: $fullName <br> Email: $email <br> Username: $userName";
+
+        return view('user-profile', [
+            'fullName' => $fullName,
+            'email' => $email,
+            'userName' => $userName,
+            'render' => '<h1 style="color:red">Test</h1>',
+        ]);
+    }
+
+    
+    public function store(UserStoreRequest $request)
+    {
+        $validatedFrom = $request->validated();
+
+            //Direct to DB
+        // DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
+        //     $validatedFrom['name'],
+        //     $validatedFrom['email'],
+        //     Hash::make($validatedFrom['password']),
+        // ]);
+
+            //Option 1
+        $user = User::create($validatedFrom);
+
+        dd($user);
+            //Option 2
+        // $user = new User();
+        // $user->name = $validatedFrom['name'];
+        // $user->email = $validatedFrom['email'];
+        // $user->username = $validatedFrom['username'];
+        // $user->password = $validatedFrom['password'];
+        // $user->save();
+
+            //option3
+        // User::insert([
+        //     'name' => $validatedFrom['name'],
+        //     'email' => $validatedFrom['email'],
+        //     'username' => $validatedFrom['username'],
+        //     'password' => $validatedFrom['password'],
+        // ]);
+
+        //updating data........
+    //    User::where('id', '=', 1)->update([
+    //     'name' => 'Updated Name',
+    //    ]);
+        //select * from users where id = 1 same as above
+    
+        //deleting data........
+       // User::where('id', '=', 1)->delete();
+
+       //data retrieving.......
+       //User::where('id', '=', 1)->get();
+       //select * from users where id = 1 LIMIT 1 same as above, first
+
+        
+    }
+
+}
