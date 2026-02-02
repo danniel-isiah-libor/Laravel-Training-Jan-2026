@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::simplePaginate(3);
+        $posts = Post::latest()->simplePaginate(3);
 
         return view('dashboard', ['posts' => $posts]);
     }

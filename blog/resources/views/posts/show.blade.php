@@ -1,5 +1,10 @@
 <x-layouts::app :title="$post->title">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
+        <div class="mt-4">
+            <flux:button href="{{ route('dashboard') }}" variant="ghost" size="sm">
+                <flux:icon name="arrow-left" variant="micro" /> Back to Dashboard
+            </flux:button>
+        </div>
         <flux:card>
             <div class="mb-4 flex items-center justify-between">
                 <div class="">
@@ -28,12 +33,6 @@
             <div class="mt-4 flex items-center justify-between text-sm text-zinc-500">
                 <span>Created: {{ $post->created_at->format('M d, Y') }}</span>
                 <span>Updated: {{ $post->updated_at->diffForHumans() }}</span>
-            </div>
-
-            <div class="mt-4">
-                <flux:button href="{{ route('dashboard') }}" variant="ghost" size="sm">
-                    <flux:icon name="arrow-left" variant="micro" /> Back to Dashboard
-                </flux:button>
             </div>
         </flux:card>
     </div>
