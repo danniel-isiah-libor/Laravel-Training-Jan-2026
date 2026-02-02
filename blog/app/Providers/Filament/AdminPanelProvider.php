@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Auth\MultiFactor\App\AppAuthentication;
+use Filament\Auth\MultiFactor\Email\EmailAuthentication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -31,6 +33,12 @@ class AdminPanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->profile(isSimple: false)
+            ->multiFactorAuthentication([
+                AppAuthentication::make()->recoverable(),
+                EmailAuthentication::make(),
+            ])
+            ->emailVerification()
+            ->emailChangeVerification()
             ->colors([
                 'primary' => Color::Green,
             ])
