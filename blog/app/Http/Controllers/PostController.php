@@ -51,7 +51,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -59,14 +59,22 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validatedForm = $request->validated();
+
+        $post->update($validatedForm);
+
+        return redirect()->route('posts.show', ['post' => $post]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post) // Post::where('id', 1)->first();
     {
-        //
+        $post->delete(); // Post::where('id', 1)->delete();
+
+        // DELETE FROM posts WHERE id = 1;
+
+        return redirect()->route('dashboard');
     }
 }
