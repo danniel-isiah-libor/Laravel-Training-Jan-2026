@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
+            ->sidebarCollapsibleOnDesktop()
             ->profile(isSimple: false)
             ->multiFactorAuthentication([
                 AppAuthentication::make()->recoverable(),
