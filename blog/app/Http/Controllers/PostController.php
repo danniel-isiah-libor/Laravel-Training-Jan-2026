@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->simplePaginate(10);
         return view('dashboard', ['posts' => $posts]);
     }
 
@@ -42,7 +42,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -50,7 +50,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -58,7 +58,11 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validatedForm = $request->validated();
+
+        $post->update($validatedForm);
+
+        return redirect()->route('posts.show', ['post' => $post]);
     }
 
     /**
@@ -66,6 +70,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('dashboard');
     }
 }
