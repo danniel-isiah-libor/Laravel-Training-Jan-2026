@@ -19,4 +19,9 @@ Route::get('/dashboard', [PostController::class, 'index'])
 require __DIR__ . '/settings.php';
 
 Route::resource('/posts', PostController::class)
-    ->except(['index']);
+    ->except(['index'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('/posts', function () {
+    abort(404); // or redirect
+});
