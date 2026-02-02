@@ -11,7 +11,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->can('update', $this->post);
     }
 
     /**
@@ -21,8 +21,22 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+           return [
+            'user_id' => [
+                'required',
+                'integer',
+                'exists:users,id',
+            ],
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'body' => [
+                'required',
+                'string',
+                'max:5000', 
+            ]
         ];
     }
 }

@@ -13,6 +13,11 @@
             @endforeach
         </div>
 
+
+
+
+
+
         {{ $posts->links() }}
     </div>
 </x-layouts::app>
