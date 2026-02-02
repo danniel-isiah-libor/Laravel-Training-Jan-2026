@@ -9,7 +9,7 @@
             <div class="container mx-auto p-3">
                 <div class="flex items-start gap-2">
                     <img src="https://i.pravatar.cc/30" class="rounded-full w-10" alt="">
-                    <form action="{{ route('post.create') }}" method="post" class="w-full flex flex-col gap-2" enctype="multipart/form-data">
+                    <form action="#" method="post" class="w-full flex flex-col gap-2" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-col gap-2">
                             <textarea class="resize-none overflow-hidden w-full focus-visible: outline-none" name="post_content" rows="2"
