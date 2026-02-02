@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\ProfilePage;
+use App\Filament\Widgets\BlogPostsChatWidget;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Auth\MultiFactor\Email\EmailAuthentication;
 use Filament\Http\Middleware\Authenticate;
@@ -33,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->sidebarCollapsibleOnDesktop()
-            ->profile(isSimple: false)
+            ->profile(isSimple: false, page: ProfilePage::class)
             ->multiFactorAuthentication([
                 AppAuthentication::make()->recoverable(),
                 EmailAuthentication::make(),
@@ -43,6 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -52,6 +55,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+                BlogPostsChatWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

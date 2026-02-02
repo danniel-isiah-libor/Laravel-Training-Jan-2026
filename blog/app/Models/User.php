@@ -9,15 +9,18 @@ use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
 use Filament\Auth\MultiFactor\Email\Concerns\InteractsWithEmailAuthentication;
 use Filament\Auth\MultiFactor\Email\Contracts\HasEmailAuthentication;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Kirschbaum\Commentions\Contracts\Commenter;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasEmailAuthentication
+class User extends Authenticatable implements Commenter, MustVerifyEmail, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasEmailAuthentication, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable, InteractsWithAppAuthentication, InteractsWithAppAuthenticationRecovery, InteractsWithEmailAuthentication;
@@ -31,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser, Has
         'name',
         'email',
         'password',
+        'file',
     ];
 
     /**
@@ -78,5 +82,10 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser, Has
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->file ? Storage::url($this->file) : null;
     }
 }

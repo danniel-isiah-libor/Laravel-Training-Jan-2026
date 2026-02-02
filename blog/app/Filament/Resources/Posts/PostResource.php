@@ -9,6 +9,7 @@ use App\Filament\Resources\Posts\Pages\ViewPost;
 use App\Filament\Resources\Posts\Schemas\PostForm;
 use App\Filament\Resources\Posts\Schemas\PostInfolist;
 use App\Filament\Resources\Posts\Tables\PostsTable;
+use App\Filament\Resources\Posts\Widgets\PostStatWidget;
 use App\Models\Post;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -55,4 +56,11 @@ class PostResource extends Resource
             'edit' => EditPost::route('/{record}/edit'),
         ];
     }
+
+    // public static function getWidgets(): array
+    // {
+    //     return [
+    //         PostStatWidget::class,
+    //     ];
+    // }
 }

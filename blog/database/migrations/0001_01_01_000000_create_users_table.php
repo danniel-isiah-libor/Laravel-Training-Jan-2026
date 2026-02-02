@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('app_authentication_secret')->nullable();
             $table->text('app_authentication_recovery_codes')->nullable();
             $table->boolean('has_email_authentication')->default(false);
+            $table->longText('file')->nullable();
             $table->timestamps();
         });
 

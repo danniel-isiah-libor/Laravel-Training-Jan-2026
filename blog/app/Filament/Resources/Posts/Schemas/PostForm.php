@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -20,6 +21,12 @@ class PostForm
                 Textarea::make('body')
                     ->required()
                     ->maxLength(5000),
+
+                FileUpload::make('file')
+                    ->image()
+                    // ->multiple()
+                    ->visibility('public')
+                    ->disk('public'),
             ]);
     }
 }
